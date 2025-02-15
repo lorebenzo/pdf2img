@@ -1,7 +1,7 @@
 **/.idea/
 .mypy_cache
 .vscode
-pdf-be/__pycache__/**
+**/__pycache__/
 .pytest_cache
 htmlcov
 dist
