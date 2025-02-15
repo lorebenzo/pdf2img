@@ -1,0 +1,30 @@
+services:
+  frontend:
+    build: ./pdf-fe
+    networks:
+      - app-network
+    restart: unless-stopped
+    environment:
+      - API_URL=https://nginx/api/file
+
+  backend:
+    build: ./pdf-be
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - app-network
+    depends_on:
+      - frontend
+      - backend
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge
