@@ -3,6 +3,11 @@
 To run the project, you need to have the following installed:
  - Docker
  - Docker Compose
+  
+To build the project, you need to run the following command:
+```bash
+docker-compose build
+```
 
 To run the project, you need to run the following command:
 ```bash

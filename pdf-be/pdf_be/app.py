@@ -2,7 +2,9 @@ from fastapi import FastAPI, UploadFile, File, HTTPException
 import pdf2image
 from fastapi.responses import Response
 
-app = FastAPI()
+app = FastAPI(
+    root_path="/api",
+)
 
 from io import BytesIO
 from starlette.concurrency import run_in_threadpool
