@@ -1,13 +1,13 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
 import pdf2image
 from fastapi.responses import Response
+from io import BytesIO
+from starlette.concurrency import run_in_threadpool
 
 app = FastAPI(
     root_path="/api",
 )
 
-from io import BytesIO
-from starlette.concurrency import run_in_threadpool
 
 
 @app.post(
@@ -32,7 +32,7 @@ from starlette.concurrency import run_in_threadpool
         200: {"description": "Successful response.", "content": {}},
     },
 )
-async def upload_file(file: UploadFile = File(...)):
+async def upload_file(file: UploadFile = File(...)) -> Response:
     # input validation
     if not file.filename.endswith(".pdf"):
         raise HTTPException(
@@ -71,5 +71,5 @@ async def upload_file(file: UploadFile = File(...)):
 
 
 @app.get("/hello")
-async def hello():
+async def hello() -> str:
     return "I'm alive"
